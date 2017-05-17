@@ -22,11 +22,11 @@
           <a routerLink="posts">动态</a>
         </li>
       </ul>
-      <ul *ngIf="!loginService.currentUser?.nickName" class="nav navbar-nav navbar-right">
+      <!--ul *ngIf="!loginService.currentUser?.nickName" class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <a routerLink="login">登录</a>
         </li>
-      </ul>
+      </ul-->
       <ul *ngIf="loginService.currentUser?.nickName" class="nav navbar-nav navbar-right">
         <li routerLinkActive="active">
           <a routerLink="user">欢迎你：{{loginService.currentUser?.nickName}}</a>

@@ -1,0 +1,14 @@
+<div *ngIf="post" class="post-detail-container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>{{ post.title }}</h3>
+      <div style="margin-top: 22px;border-bottom: 1px dashed #d9d9d9;">
+        {{ post.nickName }} &nbsp;&nbsp;&nbsp;&nbsp; {{ post.createTime | customDate }} &nbsp;&nbsp;&nbsp;&nbsp; 点击：{{ post.readCount || 0 }} &nbsp;&nbsp;&nbsp;&nbsp;评论：{{post.commentCount || 0 }}
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-sm-12" [innerHTML]="post.content | keepHtml">
+    </div>
+  </div>
+</div>

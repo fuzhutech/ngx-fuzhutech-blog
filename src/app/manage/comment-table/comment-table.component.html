@@ -1,0 +1,47 @@
+<div class="comment-table-container" [@flyIn]="'active'">
+    <form class="form-vertical" role="form">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="内容，用户名">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜索</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="comment-item-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>内容</th>
+                            <th>用户</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let comment of commentList">
+                          <td>{{comment.id}}</td>
+                          <td>{{comment.content}}</td>
+                          <td>{{comment.userNickName}}</td>
+                          <td>{{comment.createTime | customDate}}</td>
+                          <td>
+                            <a href="javascript:void(0);" (click)="delComment(comment)">删除</a>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
+            firstText="首页" lastText="末页"
+            previousText="上一页" nextText="下一页"
+            [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
+             (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+        </div>
+    </div>
+</div>
