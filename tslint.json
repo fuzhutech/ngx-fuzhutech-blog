@@ -6,8 +6,8 @@
     "callable-types": true,
     "class-name": true,
     "comment-format": [
-      true,
-      "check-space"
+      true
+      //"check-space"
     ],
     "curly": true,
     "eofline": true,
@@ -51,7 +51,7 @@
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
+    //"no-trailing-whitespace": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
@@ -73,7 +73,8 @@
       "always"
     ],
     "triple-equals": [
-      true,
+      //true,
+      false,
       "allow-null-check"
     ],
     "typedef-whitespace": [

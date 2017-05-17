@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  /*min-height: 100%;
+  position: relative;
+  padding-bottom: 162px;*/
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+}
