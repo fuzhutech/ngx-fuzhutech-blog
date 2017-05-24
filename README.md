@@ -1,5 +1,5 @@
 # ng2-fuzhutech-blog
-个人开发的博客，前端ng2-fuzhutech-blog采用angualr2 + ng2-Bootstrap实现，后端[fuzhutech-blog](https://github.com/fuzhutech/fuzhutech-blog)基于Spring+SpringMVC+Mybatis架构.
+个人开发的博客，前端[ng2-fuzhutech-blog](https://github.com/fuzhutech/ng2-fuzhutech-blog)采用angualr2 + ng2-Bootstrap实现，后端[fuzhutech-blog](https://github.com/fuzhutech/fuzhutech-blog)基于Spring+SpringMVC+Mybatis架构.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
