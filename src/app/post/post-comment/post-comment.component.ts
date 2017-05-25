@@ -50,9 +50,9 @@ export class PostCommentComponent implements OnInit {
     // 添加评论
     this.comment.postId = this.postId;
 
-	if(this.loginService.currentUser && this.loginService.currentUser.id){
-      this.comment.userId = this.loginService.currentUser.id;		
-	}
+    if (this.loginService.currentUser && this.loginService.currentUser.id) {
+      this.comment.userId = this.loginService.currentUser.id;
+    }
 
     this.commentService.create(this.comment).subscribe(
       data => {

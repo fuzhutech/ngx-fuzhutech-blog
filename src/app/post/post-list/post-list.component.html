@@ -4,7 +4,7 @@
       <div class="post-item-container" *ngFor="let post of postList">
         <h4>
           <!--a [routerLink]="['/post/postdetail',post.postId]">{{post.title}}</a-->
-          <a target="_blank" href="{{postUrl + post.id}}">{{post.title}}</a>
+          <a target="_blank" href="{{postUrl + post.id}}" (click)="updateReadCount(post)">{{post.title}}</a>
         </h4>
 
         <div *ngIf="!post.toggle_expand" style="padding-bottom: 10px">

@@ -73,5 +73,26 @@ export class PostlistComponent implements OnInit, AfterViewInit {
         post.content = '获取内容失败:' + error;
       }
     );
+
+    this.updateReadCount(post);
   }
+
+  updateReadCount(post: Post) {
+
+    post.readCount = post.readCount + 1;
+
+    const record: Post = new Post();
+    record.id = post.id;
+    record.title = post.title;
+    record.readCount = 1;
+
+    this.service.updateReadCount(record).subscribe(
+      data => {
+
+      },
+      err => {
+        console.log('更新文章阅读量失败:' + err);
+      });
+  }
+
 }

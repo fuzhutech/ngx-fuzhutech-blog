@@ -12,17 +12,26 @@ export class PostService extends BaseService {
     super(http, 'posts');
   }
 
-  public getItemAndRead(id: number) {
+  /*public getItemAndRead(id: number) {
+   const headers = new Headers();
+   headers.append('Content-Type', 'application/json;charset=UTF-8');
+   // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+   headers.append('Authorization', this.token);
+
+   const searchParams = new URLSearchParams();
+   searchParams.set('read', '1');
+
+   return this.http.get(this.url + '/' + id, {search: searchParams, headers: headers})
+   .map(response => response.json());
+   }*/
+
+  public updateReadCount(data) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this.token);
 
-    const searchParams = new URLSearchParams();
-    searchParams.set('read', '1');
-
-    return this.http.get(this.url + '/' + id, {search: searchParams, headers: headers})
-      .map(response => response.json());
+    return this.http.put(this.url + '/updateIncreaseCount', JSON.stringify(data), {headers: headers})
+      .map(res => res.json());
   }
 
 }
