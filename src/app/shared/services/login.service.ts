@@ -36,7 +36,7 @@ export class LoginService {
     console.log(user.password);
 
     return this.http.put(this.host_api + '/login', JSON.stringify(user), {headers: headers})
-      .map((obj: { status, data }) => {
+      .map((obj: { status, data, message }) => {
         if (obj.status === 1) {
           user = obj.data;
           localStorage.setItem('currentUser', JSON.stringify(user));
