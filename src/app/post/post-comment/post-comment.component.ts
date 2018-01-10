@@ -23,7 +23,7 @@ export class PostCommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    //根据路由参数刷新评论列表
+    // 根据路由参数刷新评论列表
     this.activeRoute.params.subscribe(
       params => {
         this.postId = params['postId'];
@@ -38,7 +38,7 @@ export class PostCommentComponent implements OnInit {
   public getCommentList(postId: number) {
     this.commentService.getListByWhere(postId).subscribe(
       data => {
-        this.comments = data;
+        this.comments = data as Comment[];
       },
       err => {
         console.log(err);
@@ -56,7 +56,7 @@ export class PostCommentComponent implements OnInit {
 
     this.commentService.create(this.comment).subscribe(
       data => {
-        //添加成功
+        // 添加成功
 
         this.comment = new Comment();
         this.getCommentList(this.postId);

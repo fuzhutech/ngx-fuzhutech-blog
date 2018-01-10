@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   public doLogin(): void {
     this.userLoginService.login(this.user).subscribe(
-      data => {
-        if (data.status == 1) {
+      (data: { status, message }) => {
+        if (data.status === 1) {
           this.location.back();
         } else {
           this.error = data.message;

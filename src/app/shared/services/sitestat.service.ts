@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, URLSearchParams} from '@angular/http';
-import {Observable, Subscription} from 'rxjs/Rx';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {HOST_API_PATH, HOST_PATH} from '../constant';
 
 
@@ -10,18 +9,17 @@ export class SiteStatService {
   private host_api = HOST_API_PATH;
   protected url: string = this.host_api + '/statistics';
 
-  constructor(protected http: Http) {
+  constructor(protected http: HttpClient) {
     //
   }
 
   public getSiteStat() {
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json;charset=UTF-8');
 
-    const searchParams = new URLSearchParams();
+    const searchParams = new HttpParams();
 
-    return this.http.get(this.url, {search: searchParams, headers: headers})
-      .map(response => response.json());
+    return this.http.get(this.url, {params: searchParams, headers: headers});
   }
 
 }

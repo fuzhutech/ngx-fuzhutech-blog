@@ -45,12 +45,12 @@ export class PostlistComponent implements OnInit, AfterViewInit {
 
   private loadData(offset: number, rows: number, total: number) {
     this.service.getListByPageInfo(offset, rows, -1).subscribe(
-      data => {
+      (data: { rows, total }) => {
         this.postList = data.rows;
         this.totalItems = data.total;
       },
       err => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -66,7 +66,7 @@ export class PostlistComponent implements OnInit, AfterViewInit {
     post.toggle_expand = true;
 
     this.service.getItem(post.id).subscribe(
-      data => {
+      (data: { content }) => {
         post.content = data.content;
       },
       error => {

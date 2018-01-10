@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   save(event) {
     this.userService.edit(this.user).subscribe(
       data => {
-        //console.log(data);
+        // console.log(data);
       },
       err => {
         console.log(err);

@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {AccordionModule, PaginationModule, AlertModule} from 'ng2-bootstrap';
-import {DropdownModule} from 'ng2-bootstrap';
+import {AccordionModule, PaginationModule, AlertModule} from 'ngx-bootstrap';
+import {BsDropdownModule} from 'ngx-bootstrap';
 
 import {SharedModule} from '../shared/shared.module';
 import {ManageMainComponent} from './manage-main/manage-main.component';
@@ -35,7 +35,7 @@ import {manageRoutes} from './manage.routes';
     AccordionModule.forRoot(),
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
-    DropdownModule,
+    BsDropdownModule,
     SharedModule,
     UEditorModule.forRoot({
       // 指定ueditor.js路径目录

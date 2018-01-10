@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SiteStat} from '../shared';
 import {SiteStatService} from "../shared";
+
 @Component({
   selector: 'app-sitestat',
   templateUrl: './sitestat.component.html',
@@ -20,12 +21,12 @@ export class SitestatComponent implements OnInit {
 
   ngOnInit() {
     this.service.getSiteStat().subscribe(
-     data => {
-     this.siteStat = data;
-     },
-     err =>{
-     console.log(err);
-     }
-     );
+      data => {
+        this.siteStat = data as SiteStat;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

@@ -30,7 +30,7 @@ export class PostDetailComponent implements OnInit {
     this.postService.getItem(id)
       .subscribe(
         data => {
-          this.post = data;
+          this.post = data as Post;
           console.log(this.titleService.getTitle());
           this.titleService.setTitle(this.post.title);
         },

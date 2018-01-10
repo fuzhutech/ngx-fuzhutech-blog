@@ -33,7 +33,7 @@ export class WritePostComponent implements OnInit {
     if (postId != null) {
       this.service.getItem(postId).subscribe(
         data => {
-          this.post = data;
+          this.post = data as Post;
         },
         err => {
           console.log(err);
@@ -43,10 +43,10 @@ export class WritePostComponent implements OnInit {
 
   save() {
     if (this.post.id) {
-      //编辑
+      // 编辑
       this.edit();
     } else {
-      //新增
+      // 新增
       this.add();
     }
   }

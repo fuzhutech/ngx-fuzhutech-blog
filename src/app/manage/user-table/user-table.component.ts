@@ -51,7 +51,7 @@ export class UserTableComponent implements OnInit {
   public loadData(offset: number, rows: number, total: number) {
 
     this.userService.getListByPageInfo(offset, rows, -1).subscribe(
-      data => {
+      (data: { rows, total }) => {
         this.userList = data.rows;
         this.totalItems = data.total;
       },

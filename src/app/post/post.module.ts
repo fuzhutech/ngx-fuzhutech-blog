@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
-import {PaginationModule} from 'ng2-bootstrap';
-import { AlertModule } from 'ng2-bootstrap/alert';
-
-import { CKEditorModule } from 'ng2-ckeditor';
+import {PaginationModule} from 'ngx-bootstrap';
+import {AlertModule} from 'ngx-bootstrap/alert';
+// todo: 未使用的话去掉
+import {CKEditorModule} from 'ng2-ckeditor';
 
 import {PostDetailComponent} from './post-detail/post-detail.component';
 import {PostlistComponent} from './post-list/post-list.component';

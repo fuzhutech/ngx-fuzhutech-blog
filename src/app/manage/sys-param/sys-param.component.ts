@@ -34,7 +34,7 @@ export class SysParamComponent implements OnInit {
     const rows = this.itemsPerPage;
 
     this.service.getListByPageInfo(offset, rows, -1).subscribe(
-      data => {
+      (data: { rows, total }) => {
         this.optionList = data.rows;
         this.totalItems = data.total;
       },

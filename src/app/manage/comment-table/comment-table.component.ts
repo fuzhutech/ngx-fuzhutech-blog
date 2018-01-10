@@ -38,7 +38,7 @@ export class CommentTableComponent implements OnInit {
   public loadData(offset: number, rows: number, total: number) {
 
     this.commentService.getListByPageInfo(offset, rows, -1).subscribe(
-      data => {
+      (data: { rows, total }) => {
         this.commentList = data.rows;
         this.totalItems = data.total;
       },
@@ -56,7 +56,6 @@ export class CommentTableComponent implements OnInit {
   }
 
   public delComment(comment: Comment): void {
-    //console.log(comment.id);
     this.commentService.delete(comment.id).subscribe(
       data => {
         const offset = (this.currentPage - 1) * this.itemsPerPage;
@@ -68,7 +67,7 @@ export class CommentTableComponent implements OnInit {
       err => {
         console.log(err);
       }
-    )
+    );
 
   }
 }

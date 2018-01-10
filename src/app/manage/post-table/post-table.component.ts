@@ -52,7 +52,7 @@ export class PostTableComponent implements OnInit {
   public loadData(offset: number, rows: number, total: number) {
 
     this.postService.getListByPageInfo(offset, rows, -1).subscribe(
-      data => {
+      (data: { rows, total }) => {
         this.postList = data.rows;
         this.totalItems = data.total;
       },
@@ -82,16 +82,16 @@ export class PostTableComponent implements OnInit {
   public delPost(post: Post): void {
 
     this.postService.delete(post.id).subscribe(
-        data => {
-	const offset = (this.currentPage - 1) * this.itemsPerPage;
-    const rows = this.itemsPerPage;
-    const total = -1;
+      data => {
+        const offset = (this.currentPage - 1) * this.itemsPerPage;
+        const rows = this.itemsPerPage;
+        const total = -1;
 
-    this.loadData(offset, rows, total);
-        },
-        err => {
-          console.log(err);
-        }
-      )
+        this.loadData(offset, rows, total);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
