@@ -25,10 +25,9 @@ export class PostService extends BaseService {
    }*/
 
   public updateReadCount(data) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.token);
-
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', this.token);
     return this.http.put(this.url + '/updateIncreaseCount', JSON.stringify(data), {headers: headers});
   }
 

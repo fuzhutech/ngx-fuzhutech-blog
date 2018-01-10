@@ -14,8 +14,7 @@ export class SiteStatService {
   }
 
   public getSiteStat() {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    const headers = new HttpHeaders().append('Content-Type', 'application/json;charset=UTF-8');
 
     const searchParams = new HttpParams();
 

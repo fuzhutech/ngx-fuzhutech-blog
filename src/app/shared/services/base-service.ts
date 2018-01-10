@@ -24,26 +24,23 @@ export abstract class BaseService {
     if (this.currentUser != null) {
       return this.currentUser.password;
     } else {
-      return null;
+      return '';
     }
   }
 
   public getItem(id) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Authorization', this.token);
-    const searchParams = new HttpParams();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.token
+    });
 
-    console.log(this.currentUser);
-
-    return this.http.get(this.url + '/' + id, {params: searchParams, headers: headers});
+    return this.http.get(this.url + '/' + id, {headers: headers});
   }
 
   public getList() {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json;charset=UTF-8')
+      .append('Authorization', this.token);
 
     const searchParams = new HttpParams();
 
@@ -51,39 +48,40 @@ export abstract class BaseService {
   }
 
   public getListByPageInfo(offset, rows, total) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json;charset=UTF-8')
+      .set('Authorization', this.token);
 
-    const searchParams = new HttpParams();
-    searchParams.set('offset', offset);
-    searchParams.set('rows', rows);
-    searchParams.set('total', total);
+    // 每当调用 set() 方法，将会返回包含新值的 HttpParams 对象
+    const searchParams = new HttpParams()
+      .set('offset', offset)
+      .set('rows', rows)
+      .set('total', total);
 
     return this.http.get(this.url + '/page', {params: searchParams, headers: headers});
   }
 
   public create(data) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', this.token);
 
     return this.http.post(this.url, JSON.stringify(data), {headers: headers});
   }
 
   public edit(data) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', this.token);
 
     return this.http.put(this.url, JSON.stringify(data), {headers: headers});
   }
 
   public delete(id) {
     if (id) {
-      const headers = new HttpHeaders();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization', this.token);
+      const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Authorization', this.token);
 
       return this.http.delete(this.url + '/' + id, {headers: headers});
     }

@@ -6,6 +6,7 @@ import {Subject} from 'rxjs/Subject';
 import {Post} from '../../shared/model/post-model';
 import {PostService} from '../../shared';
 import {HOST_PATH} from '../../shared';
+import 'rxjs/operator/take';
 
 @Component({
   selector: 'app-postlist',
@@ -63,6 +64,7 @@ export class PostlistComponent implements OnInit, AfterViewInit {
   }
 
   toggleExpand(post: Post) {
+    console.log('toggleExpand0');
     post.toggle_expand = true;
 
     this.service.getItem(post.id).subscribe(

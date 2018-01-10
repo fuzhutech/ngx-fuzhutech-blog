@@ -30,33 +30,28 @@ export class LoginService {
 
   public login(user: User) {
 
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    const headers = new HttpHeaders().append('Content-Type', 'application/json');
 
     user.password = Md5.hashStr(user.password).toString();
     console.log(user.password);
 
     return this.http.put(this.host_api + '/login', JSON.stringify(user), {headers: headers})
-      .map((response /*: HttpResponse<any>*/) => {
-        console.log(response);
-        const obj = response;
-        // todo:不知道该处应该什么类型参数
-        /*if (obj.status === 1) {
+      .map((obj: { status, data }) => {
+        if (obj.status === 1) {
           user = obj.data;
           localStorage.setItem('currentUser', JSON.stringify(user));
-        }*/
+        }
 
-        return response;
+        return obj;
       });
   }
 
   public logout(): void {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', this.token);
 
     this.http.put(this.host_api + '/logout', JSON.stringify(this.currentUser), {headers: headers})
-    // .map(response => response.json())
       .subscribe(
         data => {
           console.log('退出当前用户');

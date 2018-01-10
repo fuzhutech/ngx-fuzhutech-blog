@@ -13,13 +13,11 @@ export class CommentService extends BaseService {
   }
 
   getListByWhere(postId) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Authorization', this.token);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json;charset=UTF-8')
+      .append('Authorization', this.token);
 
-    const searchParams = new HttpParams();
-    searchParams.set('postId', postId);
+    const searchParams = new HttpParams().set('postId', postId);
 
     return this.http.get(this.url, {params: searchParams, headers: headers});
   }
