@@ -3,8 +3,6 @@ import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {PaginationModule} from 'ngx-bootstrap';
 import {AlertModule} from 'ngx-bootstrap/alert';
-// todo: 未使用的话去掉
-import {CKEditorModule} from 'ng2-ckeditor';
 
 import {PostDetailComponent} from './post-detail/post-detail.component';
 import {PostlistComponent} from './post-list/post-list.component';
@@ -23,7 +21,6 @@ import {SitestatComponent} from '../sitestat/sitestat.component';
     RouterModule,
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
-    CKEditorModule,
     RouterModule.forChild(postRoutes)
   ],
   exports: [],
