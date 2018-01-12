@@ -11,26 +11,29 @@ import {LoginComponent, ForgetPwdComponent} from './login';
 
 
 import {appRoutes} from './app.routes';
+import {CoreModule} from './core/core.module';
+import {OverlayContainer, FullscreenOverlayContainer} from '@angular/cdk/overlay';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent, ForgetPwdComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    SharedModule,
-    RouterModule.forRoot(appRoutes),
-  ],
-  exports: [],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent, ForgetPwdComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+        SharedModule,
+        CoreModule,
+        RouterModule.forRoot(appRoutes),
+    ],
+    exports: [],
+    providers: [{provide: OverlayContainer, useClass: FullscreenOverlayContainer}],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 

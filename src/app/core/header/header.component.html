@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+
+    <button mat-icon-button (click)="openSidebar()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span (click)="onHomeClick()">FuzhuTech</span>
+
+    <span><a mat-button routerLink="/posts">动态</a></span>
+    <span>
+        <a mat-button href="https://github.com/fuzhutech" data-toggle="dropdown" class="dropdown-toggle"
+           target="_blank">GitHub</a>
+    </span>
+    <span>
+        <a mat-button href="http://git.oschina.net/fuzhutech" data-toggle="dropdown" class="dropdown-toggle"
+           target="_blank">OSChina</a>
+    </span>
+
+    <span *ngIf="loginService.currentUser?.nickName">
+        <a routerLink="user">欢迎你：{{loginService.currentUser?.nickName}}</a>
+        <a mat-button routerLink="manage">管理后台</a>
+        <a mat-button (click)="doLogout()">退出</a>
+    </span>
+
+    <span class="fill-remaining-space"></span>
+    <mat-slide-toggle (change)="onChange($event.checked)">黑夜模式</mat-slide-toggle>
+</mat-toolbar>

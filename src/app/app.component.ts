@@ -1,34 +1,24 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import 'rxjs/add/operator/merge';
-import {LoginService} from './shared';
+import {OverlayContainer} from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  constructor(public router: Router,
-              public loginService: LoginService) {
-  }
+    darkTheme = false;
 
-  getCurrentUser() {
-    return this.loginService.currentUser;
-  }
+    constructor(private overlayContainer: OverlayContainer) {
+    }
 
-  toggle(button: any) {
-    console.log(button);
-  }
-
-  public doLogin(): void {
-    this.router.navigateByUrl('login');
-  }
-
-  public doLogout(): void {
-    console.log('doLogout');
-    this.loginService.logout();
-    this.router.navigateByUrl('home');
-  }
+    switchTheme(dark: boolean) {
+        this.darkTheme = dark;
+        if (dark) {
+            this.overlayContainer.getContainerElement().classList.add('myapp-dark-theme');
+        } else {
+            this.overlayContainer.getContainerElement().classList.remove('myapp-dark-theme');
+        }
+    }
 }

@@ -25,7 +25,7 @@ export const appRoutes = [
     loadChildren: './manage/manage.module#ManageModule'
   },
   {
-    path: '**', //fallback router must in the last
+    path: '**', // fallback router must in the last
     redirectTo: '',
     pathMatch: 'full'
   }
