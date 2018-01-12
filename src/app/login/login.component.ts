@@ -10,7 +10,7 @@ import {fadeIn} from '../shared/animations/fade-in';
 @Component({
   selector: 'app-user-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   animations: [fadeIn]
 })
 export class LoginComponent implements OnInit {

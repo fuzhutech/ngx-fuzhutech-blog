@@ -9,7 +9,7 @@ import {PostService, LoginService, User} from '../../shared';
 @Component({
   selector: 'app-write-post',
   templateUrl: './write-post.component.html',
-  styleUrls: ['./write-post.component.css'],
+  styleUrls: ['./write-post.component.scss'],
   animations: [
     flyIn
   ]

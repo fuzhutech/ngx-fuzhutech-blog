@@ -4,7 +4,7 @@ import { flyIn } from '../../shared/animations/fly-in';
 @Component({
   selector: 'app-manage-main',
   templateUrl: './manage-main.component.html',
-  styleUrls: ['./manage-main.component.css'],
+  styleUrls: ['./manage-main.component.scss'],
   animations: [
     flyIn
   ]

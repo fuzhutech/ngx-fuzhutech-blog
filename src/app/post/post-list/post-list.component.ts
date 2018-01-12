@@ -11,7 +11,7 @@ import 'rxjs/operator/take';
 @Component({
   selector: 'app-postlist',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostlistComponent implements OnInit, AfterViewInit {
   public maxSize = 5; // limit number for page links in pager

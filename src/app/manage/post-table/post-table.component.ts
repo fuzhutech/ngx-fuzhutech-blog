@@ -7,7 +7,7 @@ import {Post} from '../../shared/model/post-model';
 @Component({
   selector: 'app-post-table',
   templateUrl: './post-table.component.html',
-  styleUrls: ['./post-table.component.css'],
+  styleUrls: ['./post-table.component.scss'],
   animations: [
     flyIn
   ]

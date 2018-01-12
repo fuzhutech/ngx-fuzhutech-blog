@@ -7,7 +7,7 @@ import {User} from '../../shared/model/user-model';
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.css'],
+  styleUrls: ['./user-table.component.scss'],
   animations: [
     flyIn
   ]

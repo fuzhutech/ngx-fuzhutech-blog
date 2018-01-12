@@ -4,7 +4,7 @@ import {flyIn} from '../../shared/animations/fly-in';
 @Component({
   selector: 'app-post-detail-main',
   templateUrl: './post-detail-main.component.html',
-  styleUrls: ['./post-detail-main.component.css'],
+  styleUrls: ['./post-detail-main.component.scss'],
   animations: [
     flyIn
   ]

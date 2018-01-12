@@ -7,7 +7,7 @@ import {CommentService} from '../../shared';
 @Component({
   selector: 'app-comment-table',
   templateUrl: './comment-table.component.html',
-  styleUrls: ['./comment-table.component.css'],
+  styleUrls: ['./comment-table.component.scss'],
   animations: [
     flyIn
   ]

@@ -7,7 +7,7 @@ import {fadeIn} from '../../shared/animations/fade-in';
 @Component({
   selector: 'app-forget-pwd',
   templateUrl: './forget-pwd.component.html',
-  styleUrls: ['./forget-pwd.component.css'],
+  styleUrls: ['./forget-pwd.component.scss'],
   animations: [fadeIn]
 })
 export class ForgetPwdComponent implements OnInit {
