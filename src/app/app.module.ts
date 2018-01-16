@@ -7,7 +7,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {SharedModule} from './shared/shared.module';
 import {AppComponent} from './app.component';
-import {LoginComponent, ForgetPwdComponent} from './login';
 
 
 import {appRoutes} from './app.routes';
@@ -18,7 +17,6 @@ import {OverlayContainer, FullscreenOverlayContainer} from '@angular/cdk/overlay
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent, ForgetPwdComponent
     ],
     imports: [
         BrowserModule,

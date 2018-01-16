@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)" [@fadeIn]>
+    <mat-card>
+        <mat-card-content>
+            <img mat-card-image [src]="pic" alt="" style="margin-top: 0;"/>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <input matInput type="text" placeholder="您的用户名" formControlName="loginName"/>
+                <mat-error>用户名必须输入！</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="password" placeholder="您的密码" formControlName="password"/>
+                <mat-error *ngIf="form.controls['password'].errors?.hasOwnProperty('required')">密码必须输入</mat-error>
+                <mat-error *ngIf="form.controls['password'].errors?.hasOwnProperty('minlength')">
+                    密码至少要{{form.controls['password'].errors['minlength'].requiredLength}}位！
+                </mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="error" style="display: inline-block;width: 100%">{{error.message}}</mat-error>
+            <button mat-raised-button type="submit" [disabled]="!form.valid">登录</button>
+        </mat-card-content>
+
+        <mat-card-actions class="text-right">
+            <a href="/login/forgetpwd" style="color: inherit">忘记密码?</a>
+        </mat-card-actions>
+    </mat-card>
+
+</form>

@@ -1,16 +1,19 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
     MatButtonModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
     MatSidenavModule,
     MatSlideToggleModule,
     MatToolbarModule,
 } from '@angular/material';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CustomDatePipe} from './directives/custom-date.directive';
 import {EscapeHtmlPipe} from './directives/safe-html.directive';
 import {BooleanPipe} from './directives/boolean-pipe';
@@ -31,7 +34,10 @@ import {
         ReactiveFormsModule,
         MatButtonModule,
         MatButtonToggleModule,
+        MatCardModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatSidenavModule,
         MatSlideToggleModule,
         MatToolbarModule,
@@ -39,9 +45,13 @@ import {
     exports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         MatButtonModule,
         MatButtonToggleModule,
+        MatCardModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatSidenavModule,
         MatSlideToggleModule,
         MatToolbarModule,
