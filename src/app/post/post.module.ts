@@ -11,7 +11,7 @@ import {PostCommentComponent} from './post-comment/post-comment.component';
 
 
 import {postRoutes} from './post.routes';
-import {PostHomeComponent} from './post.component';
+import {PostHomeComponent} from './post-home/post-home.component';
 import {SitestatComponent} from '../sitestat/sitestat.component';
 
 
