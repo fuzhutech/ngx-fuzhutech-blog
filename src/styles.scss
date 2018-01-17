@@ -3,32 +3,16 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 //@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 //@import "~@angular/material/prebuilt-themes/purple-green.css";
-
 @import 'material-theme.scss';
 
-html, body, app-root, mat-sidenav-container, .site {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+html, body, app-root, .main-sidenav-container {
+    min-height: 100%;
+    min-width: 100%;
+    display: flex;
 }
 
-.site {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.main-sidenav-container > mat-sidenav-content {
+    min-width: 100%;
 }
 
 .full-width {

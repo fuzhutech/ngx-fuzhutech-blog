@@ -5,3 +5,46 @@ mat-sidenav-container.myapp-dark-theme {
 mat-sidenav {
     width: 300px;
 }
+
+.site {
+    min-height: 100%;
+    min-width: 100%;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    padding-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-container {
+        width: 1170px;
+    }
+}

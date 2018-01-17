@@ -5,7 +5,7 @@ import {flyIn} from '../../shared/animations/fly-in';
     selector: 'app-post-home',
     templateUrl: './post-home.component.html',
     styleUrls: ['./post-home.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         flyIn
     ]

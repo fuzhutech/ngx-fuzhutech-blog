@@ -7,10 +7,16 @@
 
 .post-grid {
     display: flex;
+
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .post-grid-cell {
     flex: 1;
+
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .post-grid-cell.u-full {
