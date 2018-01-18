@@ -1,45 +1,49 @@
 <div class="manage-main-container" [@flyIn]="'active'">
-  <div class="row">
-    <div class="col-sm-3">
-      <!--div-- class="list-group">
-        <a routerLink="posttable/page/1" class="list-group-item"><span class="badge">10000</span>文章管理</a>
-        <a routerLink="commenttable/page/1" class="list-group-item"><span class="badge">1000000</span>评论管理</a>
-        <a routerLink="usertable/page/1" class="list-group-item"><span class="badge">1000000</span>用户管理</a>
-        <a routerLink="sysparam" class="list-group-item">系统设置</a>
-      </div-->
+    <div class="grid-cell u-1of4">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>文章管理</mat-panel-title>
+                </mat-expansion-panel-header>
 
+                <mat-nav-list>
+                    <a mat-list-item routerLink="posts">文章列表</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
 
-      <accordion closeOthers="true">
-        <accordion-group #group isOpen="true">
-          <div accordion-heading>
-            文章管理
-            <i class="pull-right float-xs-right glyphicon"
-               [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
-          </div>
-          <ul class="nav nav-pills nav-stacked">
-            <li><a routerLink="posts">文章列表</a></li>
-          </ul>
-        </accordion-group>
-        <accordion-group heading="评论管理">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a routerLink="comments">评论列表</a></li>
-          </ul>
-        </accordion-group>
-        <accordion-group heading="用户管理">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a routerLink="users">用户列表</a></li>
-          </ul>
-        </accordion-group>
-        <accordion-group heading="系统管理">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a routerLink="sysparam">系统设置</a></li>
-          </ul>
-        </accordion-group>
-      </accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>评论管理</mat-panel-title>
+                </mat-expansion-panel-header>
 
+                <mat-nav-list>
+                    <a mat-list-item routerLink="comments">评论列表</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>用户列表</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-nav-list>
+                    <a mat-list-item routerLink="users">用户列表</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>系统管理</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-nav-list>
+                    <a mat-list-item routerLink="sysparam">系统设置</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
-    <div class="col-sm-9">
-      <router-outlet></router-outlet>
+    <div class="grid-cell">
+        <router-outlet></router-outlet>
     </div>
-  </div>
+
 </div>
