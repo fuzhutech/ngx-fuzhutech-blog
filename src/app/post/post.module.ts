@@ -16,23 +16,23 @@ import {SitestatComponent} from '../sitestat/sitestat.component';
 
 
 @NgModule({
-  imports: [
-    SharedModule,
-    RouterModule,
-    PaginationModule.forRoot(),
-    AlertModule.forRoot(),
-    RouterModule.forChild(postRoutes)
-  ],
-  exports: [],
-  declarations: [
-    SitestatComponent,
-    PostHomeComponent,
-    PostlistComponent,
-    PostDetailMainComponent,
-    PostDetailComponent,
-    PostCommentComponent
-  ],
-  providers: []
+    imports: [
+        SharedModule,
+        RouterModule,
+        PaginationModule.forRoot(),
+        AlertModule.forRoot(),
+        RouterModule.forChild(postRoutes)
+    ],
+    exports: [],
+    declarations: [
+        SitestatComponent,
+        PostHomeComponent,
+        PostlistComponent,
+        PostDetailMainComponent,
+        PostDetailComponent,
+        PostCommentComponent
+    ],
+    providers: []
 })
 export class PostModule {
 }

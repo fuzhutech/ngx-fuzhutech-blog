@@ -1,45 +1,33 @@
 <div class="post-list-container">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="post-item-container" *ngFor="let post of postList">
+    <div class="post-item-container" *ngFor="let post of postList">
         <h4>
-          <!--a [routerLink]="['/post/postdetail',post.postId]">{{post.title}}</a-->
-          <a target="_blank" href="{{postUrl + post.id}}" (click)="updateReadCount(post)">{{post.title}}</a>
+            <a target="_blank" href="{{postUrl + post.id}}" (click)="updateReadCount(post)">{{post.title}}</a>
         </h4>
 
         <div *ngIf="!post.toggle_expand" style="padding-bottom: 10px">
-          <div style="text-indent: 1.5em;line-height: 150%;display: inline;" [innerHTML]="post.excerpt">
-          </div>
-          <button class="more_link" (click)="toggleExpand(post)">显示全部</button>
+            <div style="text-indent: 1.5em;line-height: 150%;display: inline;" [innerHTML]="post.excerpt">
+            </div>
+            <button class="more_link" (click)="toggleExpand(post)">显示全部</button>
         </div>
 
         <div *ngIf="post.toggle_expand">
-          <div [innerHTML]="post.content | keepHtml"></div>
+            <div [innerHTML]="post.content | keepHtml"></div>
         </div>
 
-        <!--p class="{{post.isfamous | boolean }}"-->
-        <p>
-          {{post.nickName }}
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          {{post.createTime | customDate}}
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{post.readCount || 0}}
-
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <i class="fa fa-comment" aria-hidden="true"></i>
-          &nbsp;{{post.commentCount || 0}}
-
-          <button *ngIf="post.toggle_expand" class="item-collapse" (click)="post.toggle_expand = false">
-            <i class="z-icon-fold"></i>收起
-          </button>
-        </p>
-      </div>
-      <pagination [totalItems]="totalItems" [maxSize]="maxSize"
-                  [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
-                  firstText="首页" lastText="末页"
-                  previousText="上一页" nextText="下一页"
-                  [boundaryLinks]="true" [rotate]="false"
-                  (numPages)="numPages = $event" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+        <div>
+            <span class="info first">{{post.nickName }}</span>
+            <span class="info">{{post.createTime | customDate}}</span>
+            <span class="info">浏览:{{post.readCount || 0}}</span>
+            <span class="info">评论:{{post.commentCount || 0}}</span>
+            <button *ngIf="post.toggle_expand" class="item-collapse" (click)="post.toggle_expand = false">
+                收起
+            </button>
+        </div>
     </div>
-  </div>
+
+    <mat-paginator [length]="totalItems"
+                   [pageSize]="pageSize"
+
+                   (page)="pageChanged($event)">
+    </mat-paginator>
 </div>
