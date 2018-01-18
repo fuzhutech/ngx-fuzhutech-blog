@@ -14,6 +14,7 @@ import {
     MatPaginatorModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTableModule,
     MatToolbarModule,
 } from '@angular/material';
 
@@ -46,6 +47,7 @@ import {
         MatPaginatorModule,
         MatSidenavModule,
         MatSlideToggleModule,
+        MatTableModule,
         MatToolbarModule,
     ],
     exports: [
@@ -63,6 +65,7 @@ import {
         MatPaginatorModule,
         MatSidenavModule,
         MatSlideToggleModule,
+        MatTableModule,
         MatToolbarModule,
         CustomDatePipe,
         EscapeHtmlPipe,

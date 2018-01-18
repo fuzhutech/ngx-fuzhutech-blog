@@ -17,11 +17,13 @@
     </span>
 
     <span *ngIf="loginService.currentUser?.nickName">
-        <a routerLink="user">欢迎你：{{loginService.currentUser?.nickName}}</a>
         <a mat-button routerLink="manage">管理后台</a>
         <a mat-button (click)="doLogout()">退出</a>
     </span>
 
     <span class="fill-remaining-space"></span>
+    <span *ngIf="loginService.currentUser?.nickName">
+        <a mat-button routerLink="user">欢迎你：{{loginService.currentUser?.nickName}}</a>
+    </span>
     <mat-slide-toggle (change)="onChange($event.checked)">黑夜模式</mat-slide-toggle>
 </mat-toolbar>

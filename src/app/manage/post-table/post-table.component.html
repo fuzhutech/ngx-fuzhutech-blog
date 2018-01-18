@@ -1,71 +1,63 @@
-<div class="post-table-container" [@flyIn]="'active'">
-    <form class="form-vertical" role="form">
-        <div class="row">
-            <div class="col-sm-10">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="标题，作者">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜索</button>
-                    </span>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="input-group pull-right">
-                    <button class="btn btn-success" type="button" (click)="goToWrite()">发表文章</button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="post-item-container">
-                <table class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>标题</th>
-                            <th>作者</th>
-                            <th>日期</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let post of postList">
-                            <td>{{post.id}}</td>
-                            <td>{{post.title}}</td>
-                            <td>{{post.userName}}</td>
-                            <td>{{post.createTime  | customDate}}</td>
-                            <td>
-                                <a href="javascript:void(0);" name="{{post.postId}}" (click)="editPost(post)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                <a href="javascript:void(0);" name="{{post.postId}}" (click)="unTop(post)"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
-                                <a href="javascript:void(0);" name="{{post.postId}}" (click)="top(post)"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-                                <a href="javascript:void(0);" name="{{post.postId}}" (click)="delPost(post)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
-            firstText="首页" lastText="末页"
-            previousText="上一页" nextText="下一页"
-            [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
-             (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
-        </div>
-    </div>
-</div>
+<div class="post-table-container mat-elevation-z8 " [@flyIn]="'active'">
 
-<!--div-- class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title pull-left">请确认</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                确定删除吗？
-            </div>
-        </div>
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="搜索">
+        </mat-form-field>
+        <button mat-raised-button type="button" (click)="goToWrite()" style="float: right">发表文章</button>
     </div>
-</div-->
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>序号</mat-header-cell>
+            <mat-cell *matCellDef="let post"> {{post.id}}</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
+            <mat-cell *matCellDef="let post"> {{post.title}}</mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="userName">
+            <mat-header-cell *matHeaderCellDef> 作者</mat-header-cell>
+            <mat-cell *matCellDef="let post"> {{post.userName}}</mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="customDate">
+            <mat-header-cell *matHeaderCellDef> 日期</mat-header-cell>
+            <mat-cell *matCellDef="let post"> {{post.createTime | customDate}}</mat-cell>
+        </ng-container>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>操作</mat-header-cell>
+            <mat-cell *matCellDef="let post">
+                <button mat-icon-button (click)="editPost(post)">
+                    <mat-icon class="mat-18">edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="delPost(post)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                </button>
+                <button mat-icon-button (click)="top(post)">
+                    <mat-icon class="mat-18">arrow_upward</mat-icon>
+                </button>
+                <button mat-icon-button (click)="unTop(post)">
+                    <mat-icon class="mat-18">arrow_downward</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
