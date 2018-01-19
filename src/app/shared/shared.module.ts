@@ -16,6 +16,7 @@ import {
     MatSlideToggleModule,
     MatTableModule,
     MatToolbarModule,
+    MatPaginatorIntl,
 } from '@angular/material';
 
 import {CustomDatePipe} from './directives/custom-date.directive';
@@ -30,6 +31,8 @@ import {
     OptionService,
     SiteStatService
 } from './index';
+
+import {CustomPaginatorIntl} from './custom-paginator-intl';
 
 @NgModule({
     imports: [
@@ -83,7 +86,8 @@ import {
         CommentService,
         UserService,
         OptionService,
-        SiteStatService
+        SiteStatService,
+        {provide: MatPaginatorIntl, useClass: CustomPaginatorIntl}
     ]
 })
 
