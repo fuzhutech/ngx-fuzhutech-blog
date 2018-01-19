@@ -1,56 +1,59 @@
 <div class="user-table-container" [@flyIn]="'active'">
-  <form class="form-vertical" role="form">
-    <div class="row">
-      <!--div-- class="col-sm-10">
-        <div class="input-group">
-          <input class="form-control" type="text" placeholder="用户名，昵称">
-          <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜索</button>
-                    </span>
-        </div>
-      </div-->
-      <div class="col-sm-2">
-        <div class="input-group">
-          <button class="btn btn-success" type="button" (click)="newUser()"><i class="fa fa-user"
-                                                                               aria-hidden="true"></i> 创建用户
-          </button>
-        </div>
-      </div>
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="搜索">
+        </mat-form-field>
     </div>
-  </form>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="user-item-container">
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th>序号</th>
-            <th>用户名</th>
-            <th>昵称</th>
-            <th>注册时间</th>
-            <th>操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let user of userList">
-            <td>{{user.id}}</td>
-            <td>{{user.loginName}}</td>
-            <td>{{user.nickName}}</td>
-            <td>{{user.createTime | customDate}}</td>
-            <td>
-              <a [routerLink]="['/manage/users/edit',user.id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" (click)="blockUser(1)"><i class="fa fa-lock" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" (click)="unBlockUser(1)"><i class="fa fa-unlock" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" (click)="resetPwd(1)"><i class="fa fa-user-secret"
-                                                                     aria-hidden="true"></i></a>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
-                  firstText="首页" lastText="末页" previousText="上一页" nextText="下一页" [boundaryLinks]="true" [rotate]="false"
-                  (numPages)="numPages = $event" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
-    </div>
-  </div>
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>序号</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="loginName">
+            <mat-header-cell *matHeaderCellDef> 用户名</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.loginName}}</mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nickName">
+            <mat-header-cell *matHeaderCellDef> 昵称</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.nickName}}</mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="createTime">
+            <mat-header-cell *matHeaderCellDef> 注册时间</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.createTime | customDate}}</mat-cell>
+        </ng-container>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>操作</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="blockUser(row)">
+                    <mat-icon class="mat-18">edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="unBlockUser(row)">
+                    <mat-icon class="mat-18">arrow_upward</mat-icon>
+                </button>
+                <button mat-icon-button (click)="resetPwd(row)">
+                    <mat-icon class="mat-18">arrow_downward</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
 </div>

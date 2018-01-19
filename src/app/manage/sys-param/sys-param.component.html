@@ -1,70 +1,65 @@
 <div class="sys-param-container" [@flyIn]="'active'">
-  <form class="form-vertical" role="form">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="input-group">
-          <input class="form-control" type="text" placeholder="内容，用户名">
-          <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜索</button>
-                    </span>
-        </div>
-      </div>
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="搜索">
+        </mat-form-field>
     </div>
-  </form>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="post-item-container">
-        <table class="table table-bordered table-condensed">
-          <thead>
-          <tr>
-            <th>序号</th>
-            <th>名称</th>
-            <th>值</th>
-            <th>操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let option of optionList">
-            <td>{{option.id}}</td>
-            <td>{{option.name}}</td>
-            <td>{{option.value}}</td>
-            <td>
-              <a href="javascript:void(0);" (click)="editPost(option)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
-                  firstText="首页" lastText="末页"
-                  previousText="上一页" nextText="下一页"
-                  [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
-                  (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
-    </div>
-  </div>
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>序号</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> 名称</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef> 值</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.value}}</mat-cell>
+        </ng-container>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>操作</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="editPost(row)">
+                    <mat-icon class="mat-18">edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
 
 
-  <div *ngIf="editOption" class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">编辑--{{editOption.name}}</h3>
-    </div>
-    <div class="panel-body">
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">值</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="请输入值" [(ngModel)]="editOption.value" name="email">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-9">
-            <button type="submit" class="btn btn-success" (click)="save($event)">保存</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
+    <mat-card *ngIf="editOption">
+        <mat-card-header>
+            <mat-card-title>编辑</mat-card-title>
+            <mat-card-subtitle>更改[{{editOption.name}}]的值</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput placeholder="请输入值" [(ngModel)]="editOption.value" name="value">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button  (click)="save($event)">保存</button>
+        </mat-card-actions>
+    </mat-card>
 
 
 </div>

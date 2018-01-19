@@ -1,3 +1,15 @@
 .write-post-container{
-	padding-right:2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.ueditor{
+    width: 90%;
+    padding-right: 50px;
+    min-height: 300px;
 }

@@ -1,47 +1,44 @@
 <div class="comment-table-container" [@flyIn]="'active'">
-    <form class="form-vertical" role="form">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="内容，用户名">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i> 搜索</button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </form>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="comment-item-container">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>内容</th>
-                            <th>用户</th>
-                            <th>时间</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let comment of commentList">
-                          <td>{{comment.id}}</td>
-                          <td>{{comment.content}}</td>
-                          <td>{{comment.userNickName}}</td>
-                          <td>{{comment.createTime | customDate}}</td>
-                          <td>
-                            <a href="javascript:void(0);" (click)="delComment(comment)">删除</a>
-                          </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <pagination [totalItems]="totalItems" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [(ngModel)]="currentPage"
-            firstText="首页" lastText="末页"
-            previousText="上一页" nextText="下一页"
-            [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"
-             (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
-        </div>
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="搜索">
+        </mat-form-field>
     </div>
+
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>序号</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="content">
+            <mat-header-cell *matHeaderCellDef> 内容</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.content}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="userName">
+            <mat-header-cell *matHeaderCellDef> 用户</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.userName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="createTime">
+            <mat-header-cell *matHeaderCellDef> 时间</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.createTime | customDate}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>操作</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="delComment(row)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+
 </div>

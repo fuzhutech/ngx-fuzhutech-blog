@@ -3,67 +3,62 @@ import {flyIn} from '../../shared/animations/fly-in';
 import {OptionService} from '../../shared';
 import {Option} from '../../shared/model/option-model';
 
+import {MatTableDataSource, MatPaginator} from '@angular/material';
+import {ViewChild} from '@angular/core';
+
 @Component({
-  selector: 'app-sys-param',
-  templateUrl: './sys-param.component.html',
-  styleUrls: ['./sys-param.component.scss'],
-  animations: [
-    flyIn
-  ]
+    selector: 'app-sys-param',
+    templateUrl: './sys-param.component.html',
+    styleUrls: ['./sys-param.component.scss'],
+    animations: [
+        flyIn
+    ]
 })
 export class SysParamComponent implements OnInit {
 
-  public maxSize = 5;
-  public itemsPerPage = 5;
-  public totalItems = 15;
-  public currentPage = 1;
-  public numPages;
-  public optionList: Array<Option>;
-  public option = new Option();
-  editOption: Option;
+    displayedColumns = ['id', 'name', 'value', 'action'];
+    dataSource = new MatTableDataSource<Option>();
 
-  constructor(private service: OptionService) {
-  }
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit() {
-    this.loadData();
-  }
+    // public option = new Option();
+    editOption: Option;
 
-  public loadData() {
-    const offset = (this.currentPage - 1) * this.itemsPerPage;
-    const rows = this.itemsPerPage;
+    constructor(private service: OptionService) {
+    }
 
-    this.service.getListByPageInfo(offset, rows, -1).subscribe(
-      (data: { rows, total }) => {
-        this.optionList = data.rows;
-        this.totalItems = data.total;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
-  public pageChanged(event: any): void {
-    this.loadData();
-  }
-
-  public editPost(option: Option): void {
-    this.editOption = new Option();
-    this.editOption.id = option.id;
-    this.editOption.name = option.name;
-    this.editOption.value = option.value;
-  }
-
-  private save() {
-    this.service.edit(this.editOption).subscribe(
-      data => {
+    ngOnInit() {
         this.loadData();
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+    }
+
+    editPost(option: Option): void {
+        this.editOption = new Option();
+        this.editOption.id = option.id;
+        this.editOption.name = option.name;
+        this.editOption.value = option.value;
+    }
+
+    save() {
+        this.service.edit(this.editOption).subscribe(
+            data => {
+                this.loadData();
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    private loadData() {
+
+        this.service.getList().subscribe(
+            (data: Option[]) => {
+                this.dataSource.data = data;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 
 }
