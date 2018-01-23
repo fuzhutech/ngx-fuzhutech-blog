@@ -7,22 +7,34 @@
 // 定义默认主题颜色，使用_theming.scss 中定义的 Material Design 调色板来定义我们自有主题的调色板
 $my-app-primary: mat-palette($mat-indigo);
 $my-app-accent: mat-palette($mat-pink, A200, A100, A400);
-$my-app-warn: mat-palette($mat-red);  //警告的调色默认红色，但列在这里便于以后的自定义。
+$my-app-warn: mat-palette($mat-red); //警告的调色默认红色，但列在这里便于以后的自定义。
 
 // 创建一个主题对象 (包含所有自定义的调色板)
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 // 设置自定义主题，使其生效
-@include angular-material-theme($my-app-theme);
+// @include angular-material-theme($my-app-theme);
+
+.myapp-light-theme {
+    @include angular-material-theme($my-app-theme);
+}
 
 // 提供一个深色主题
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
-$dark-warn: mat-palette($mat-deep-orange);
-
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn); // 这句是关键，Material 主题分为 light 和 dark 两种
-
-// 将深色主题包含在一个 css 类中，这样任何组件如果包含在一个应用此类的元素中,该组件就会应用这个主题风格
 .myapp-dark-theme {
+    $dark-primary: mat-palette($mat-blue-grey);
+    $dark-accent: mat-palette($mat-amber, A200, A100, A400);
+
+    $dark-warn: mat-palette($mat-deep-orange);
+
+    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
     @include angular-material-theme($dark-theme);
+
+    // 改变字体,Typography
+    /*$custom-typography: mat-typography-config(
+        $font-family: Raleway,
+        $headline: mat-typography-level(24px, 48px, 400),
+        $body-1: mat-typography-level(16px, 24px, 400)
+    );
+    @include angular-material-typography($custom-typography);*/
 }
