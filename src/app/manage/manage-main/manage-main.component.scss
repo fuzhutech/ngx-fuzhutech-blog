@@ -1,16 +1,26 @@
 .manage-main-container {
     display: flex;
 }
-
-.grid-cell {
-    flex: 1;
-}
-
-.grid-cell.u-full {
-    flex: 0 0 100%;
-}
-
-.grid-cell.u-1of5 {
-    flex: 0 0 20%;
+.u-1of5 {
+    flex: 0 0 auto;
     padding-right: 15px;
+}
+
+.u-4of5 {
+    flex: 0 1 80%;
+    padding-right: 15px;
+}
+
+:host {
+    @media (min-width: 768px) {
+        width: 750px;
+    }
+
+    @media (min-width: 992px) {
+        width: 970px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 1170px;
+    }
 }

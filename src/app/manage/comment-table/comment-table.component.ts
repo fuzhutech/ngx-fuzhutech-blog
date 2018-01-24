@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {flyIn} from '../../shared/animations/fly-in';
 import {Comment} from '../../shared/model/comment-model';
@@ -16,7 +16,7 @@ import {HttpErrorResponse} from '@angular/common/http';
         flyIn
     ]
 })
-export class CommentTableComponent implements OnInit {
+export class CommentTableComponent implements OnInit, AfterViewInit {
 
     displayedColumns = ['id', 'content', 'userName', 'createTime', 'action'];
     dataSource = new MatTableDataSource<Comment>();
@@ -60,6 +60,17 @@ export class CommentTableComponent implements OnInit {
                     console.log(err);
                 }
             );
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+    }
+
+    applyFilter(filterValue: string) {
+        console.log(filterValue);
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 
 }

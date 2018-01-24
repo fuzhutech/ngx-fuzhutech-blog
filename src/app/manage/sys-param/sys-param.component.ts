@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {flyIn} from '../../shared/animations/fly-in';
 import {OptionService} from '../../shared';
 import {Option} from '../../shared/model/option-model';
@@ -14,7 +14,7 @@ import {ViewChild} from '@angular/core';
         flyIn
     ]
 })
-export class SysParamComponent implements OnInit {
+export class SysParamComponent implements OnInit, AfterViewInit {
 
     displayedColumns = ['id', 'name', 'value', 'action'];
     dataSource = new MatTableDataSource<Option>();
@@ -59,6 +59,17 @@ export class SysParamComponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+    }
+
+    applyFilter(filterValue: string) {
+        console.log(filterValue);
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 
 }

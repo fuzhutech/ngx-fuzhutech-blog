@@ -7,11 +7,6 @@ form {
 
 mat-card {
     width: 20em;
-    /*margin: 5px 5px;
-
-    height: 25em;
-    flex: 0 0 20em;
-    align-items: center;*/
 }
 
 .text-right {
@@ -21,4 +16,6 @@ mat-card {
 
 :host {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

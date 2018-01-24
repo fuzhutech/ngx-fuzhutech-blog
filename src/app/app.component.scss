@@ -20,7 +20,7 @@ main {
     padding: 15px;
 
     display: flex;
-    align-items: center;
+    flex-direction: row;
 }
 
 @media (min-width: 768px) {

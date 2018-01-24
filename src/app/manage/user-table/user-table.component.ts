@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {flyIn} from '../../shared/animations/fly-in';
 import {UserService} from '../../shared';
@@ -15,7 +15,7 @@ import {ViewChild} from '@angular/core';
         flyIn
     ]
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnInit, AfterViewInit {
 
     displayedColumns = ['id', 'loginName', 'nickName', 'createTime', 'action'];
     dataSource = new MatTableDataSource<User>();
@@ -59,5 +59,16 @@ export class UserTableComponent implements OnInit {
 
     public resetPwd(user): void {
         console.log(user);
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+    }
+
+    applyFilter(filterValue: string) {
+        console.log(filterValue);
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 }
