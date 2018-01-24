@@ -1,16 +1,10 @@
-<div class="site-stat-container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{currentTime}}</h3>
-    </div>
-    <div class="panel-body">
-      <p>访问总数：{{siteStat.totalAccess || 0}}</p>
-      <p>文章总数：{{siteStat.totalPosts}}</p>
-      <p>评论总数：{{siteStat.totalComments}}</p>
-      <!--p>会员总数：12772</p>
-      <p>在线访客：187</p>
-      <p>在线会员：2</p>
-      <p>在线记录：268</p-->
-    </div>
-  </div>
-</div>
+<mat-card style="margin-top: 20px;">
+    <mat-card-header>
+        <mat-card-title>{{currentTime}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>访问总数：{{siteStat.totalAccess || 0}}</p>
+        <p>文章总数：{{siteStat.totalPosts}}</p>
+        <p>评论总数：{{siteStat.totalComments}}</p>
+    </mat-card-content>
+</mat-card>

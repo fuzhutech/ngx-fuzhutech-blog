@@ -11,11 +11,19 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    $drawer-container-background-color:  mat-color($background, background) !default;
+    $drawer-container-background-color: mat-color($background, background) !default;
 
     .fz-site-container {
         background-color: $drawer-container-background-color;
         color: mat-color($foreground, text);
+    }
+}
+
+@mixin fz-toolbar-theme($theme) {
+    $background: map-get($theme, background);
+
+    .mat-toolbar {
+        background: mat-color($background, status-bar);
     }
 }
 
@@ -33,6 +41,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 .myapp-light-theme {
     @include angular-material-theme($my-app-theme);
     @include fz-site-theme($my-app-theme);
+    @include fz-toolbar-theme($my-app-theme);
 }
 
 // 提供一个深色主题
