@@ -1,18 +1,11 @@
-<mat-sidenav-container class="main-sidenav-container">
-
-    <mat-sidenav #sidenav mode="over" opened="false" align="start">
-        <app-sidebar (navClick)="sidenav.toggle()"></app-sidebar>
-    </mat-sidenav>
-
-    <div class="site">
-        <header>
-            <app-header (toggle)="sidenav.toggle()" (toggleDarkTheme)="switchTheme($event)"></app-header>
-        </header>
-        <main class="main-container">
-            <router-outlet></router-outlet>
-        </main>
-        <footer>
-            <app-footer></app-footer>
-        </footer>
-    </div>
-</mat-sidenav-container>
+<div class="site fz-site-container">
+    <header>
+        <app-header (toggleDarkTheme)="switchTheme($event)"></app-header>
+    </header>
+    <main class="main-container">
+        <router-outlet></router-outlet>
+    </main>
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+</div>

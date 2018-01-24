@@ -4,6 +4,21 @@
 // 引入Material 公用的主体风格,请确保只在此处包含一次，其他地方不要再include
 @include mat-core();
 
+@mixin fz-site-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    $drawer-container-background-color:  mat-color($background, background) !default;
+
+    .fz-site-container {
+        background-color: $drawer-container-background-color;
+        color: mat-color($foreground, text);
+    }
+}
+
 // 定义默认主题颜色，使用_theming.scss 中定义的 Material Design 调色板来定义我们自有主题的调色板
 $my-app-primary: mat-palette($mat-indigo);
 $my-app-accent: mat-palette($mat-pink, A200, A100, A400);
@@ -17,6 +32,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 .myapp-light-theme {
     @include angular-material-theme($my-app-theme);
+    @include fz-site-theme($my-app-theme);
 }
 
 // 提供一个深色主题
@@ -29,6 +45,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
     $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
     @include angular-material-theme($dark-theme);
+    @include fz-site-theme($dark-theme);
 
     // 改变字体,Typography
     /*$custom-typography: mat-typography-config(

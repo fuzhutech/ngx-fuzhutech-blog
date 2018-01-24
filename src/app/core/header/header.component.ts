@@ -10,17 +10,12 @@ import {LoginService} from '../../shared/services/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-    @Output() toggle = new EventEmitter<void>();
     @Output() toggleDarkTheme = new EventEmitter<boolean>();
 
     constructor(public router: Router, public loginService: LoginService) {
     }
 
     ngOnInit() {
-    }
-
-    openSidebar() {
-        this.toggle.emit();
     }
 
     onChange(checked: boolean) {
