@@ -3,12 +3,13 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router, Params} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {PageEvent} from '@angular/material';
 import {Post} from '../../shared/model/post-model';
-import {PostService} from '../../shared';
 import {HOST_PATH} from '../../shared';
 import 'rxjs/operator/take';
 
-import {PageEvent} from '@angular/material';
+
+import {PostService} from '../../core/services';
 
 @Component({
     selector: 'app-postlist',

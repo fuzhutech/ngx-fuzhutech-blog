@@ -1,34 +1,35 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../shared';
 import {User} from '../../shared/model/user-model';
+import {UserService} from '../../core/services';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
 
-  user = new User();
+    user = new User();
 
-  constructor(public router: Router,
-              public activeRoute: ActivatedRoute,
-              private userService: UserService) {
+    constructor(public router: Router,
+                public activeRoute: ActivatedRoute,
+                private userService: UserService) {
 
-  }
+    }
 
-  ngOnInit() {}
+    ngOnInit() {
+    }
 
-  save(event) {
-    this.userService.edit(this.user).subscribe(
-      data => {
-        // console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+    save(event) {
+        this.userService.edit(this.user).subscribe(
+            data => {
+                // console.log(data);
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
 }

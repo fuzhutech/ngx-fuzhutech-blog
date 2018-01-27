@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {HOST_API_PATH, HOST_PATH} from '../constant';
+import {HOST_API_PATH, HOST_PATH} from '../../shared/constant';
 
 
 @Injectable()

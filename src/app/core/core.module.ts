@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {SkipSelf, Optional} from '@angular/core';
@@ -33,6 +33,15 @@ import {SharedModule} from '../shared/shared.module';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import {
+    CommentService,
+    ForgetPwdService,
+    LoginService,
+    OptionService,
+    PostService,
+    SiteStatService,
+    UserService
+} from './services';
 
 @NgModule({
     imports: [
@@ -56,7 +65,14 @@ import {SidebarComponent} from './sidebar/sidebar.component';
             useValue: {
                 uri: 'http://localhost:3000'
             }
-        }
+        },
+        LoginService,
+        ForgetPwdService,
+        PostService,
+        CommentService,
+        UserService,
+        OptionService,
+        SiteStatService,
     ]
 })
 export class CoreModule {
@@ -67,4 +83,13 @@ export class CoreModule {
 
         // loadSvgResource(ir, ds);
     }
+
+    /*static forRoot(config: UserServiceConfig): ModuleWithProviders {
+        return {
+            ngModule: CoreModule,
+            providers: [
+                {provide: UserServiceConfig, useValue: config }
+            ]
+        };
+    }*/
 }

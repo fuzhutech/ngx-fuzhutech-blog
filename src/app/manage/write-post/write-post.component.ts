@@ -1,11 +1,12 @@
 import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {flyIn} from '../../shared/animations/fly-in';
 import {ActivatedRoute} from '@angular/router';
-
-import {Post} from '../../shared/model/post-model';
-import {PostService, LoginService, User} from '../../shared';
 import {MatSnackBar} from '@angular/material';
+
+import {flyIn} from '../../shared/animations/fly-in';
+import {Post} from '../../shared/model/post-model';
+import {LoginService, PostService} from '../../core/services';
+import {User} from '../../shared';
 
 @Component({
     selector: 'app-write-post',

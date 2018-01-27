@@ -1,11 +1,10 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {flyIn} from '../../shared/animations/fly-in';
-import {UserService} from '../../shared';
-import {User} from '../../shared/model/user-model';
-
 import {MatTableDataSource, MatPaginator} from '@angular/material';
-import {ViewChild} from '@angular/core';
+
+import {flyIn} from '../../shared/animations/fly-in';
+import {User} from '../../shared/model/user-model';
+import {UserService} from '../../core/services';
 
 @Component({
     selector: 'app-user-table',

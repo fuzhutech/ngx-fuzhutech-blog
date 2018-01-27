@@ -3,8 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Md5} from 'ts-md5/dist/md5';
-import {User} from '../model/user-model';
-import {HOST_API_PATH} from '../constant';
+import {User} from '../../shared/model/user-model';
+import {HOST_API_PATH} from '../../shared/constant';
 
 @Injectable()
 export class LoginService {

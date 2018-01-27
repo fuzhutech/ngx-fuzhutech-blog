@@ -1,10 +1,9 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {flyIn} from '../../shared/animations/fly-in';
-import {OptionService} from '../../shared';
-import {Option} from '../../shared/model/option-model';
-
+import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatPaginator} from '@angular/material';
-import {ViewChild} from '@angular/core';
+
+import {flyIn} from '../../shared/animations/fly-in';
+import {Option} from '../../shared/model/option-model';
+import {OptionService} from '../../core/services';
 
 @Component({
     selector: 'app-sys-param',

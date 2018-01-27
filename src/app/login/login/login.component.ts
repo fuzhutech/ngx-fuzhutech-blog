@@ -1,6 +1,6 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
-import {LoginService} from '../../shared/services/login.service';
+import {LoginService} from '../../core/services/login.service';
 import {Location} from '@angular/common';
 
 import {fadeIn} from '../../shared/animations/fade-in';

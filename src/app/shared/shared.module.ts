@@ -23,15 +23,6 @@ import {
 import {CustomDatePipe} from './directives/custom-date.directive';
 import {EscapeHtmlPipe} from './directives/safe-html.directive';
 import {BooleanPipe} from './directives/boolean-pipe';
-import {
-    LoginService,
-    ForgetPwdService,
-    PostService,
-    CommentService,
-    UserService,
-    OptionService,
-    SiteStatService
-} from './index';
 
 import {CustomPaginatorIntl} from './custom-paginator-intl';
 
@@ -83,13 +74,6 @@ import {CustomPaginatorIntl} from './custom-paginator-intl';
         BooleanPipe
     ],
     providers: [
-        LoginService,
-        ForgetPwdService,
-        PostService,
-        CommentService,
-        UserService,
-        OptionService,
-        SiteStatService,
         {provide: MatPaginatorIntl, useClass: CustomPaginatorIntl}
     ]
 })

@@ -1,11 +1,10 @@
-import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
-import {flyIn} from '../../shared/animations/fly-in';
+import {Component, OnInit, Input, AfterViewInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router, UrlTree, PRIMARY_OUTLET, UrlSegmentGroup, UrlSegment} from '@angular/router';
-import {PostService} from '../../shared';
-import {Post} from '../../shared/model/post-model';
-
 import {MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
-import {ViewChild} from '@angular/core';
+
+import {Post} from '../../shared/model/post-model';
+import {PostService} from '../../core/services';
+import {flyIn} from '../../shared/animations/fly-in';
 
 @Component({
     selector: 'app-post-table',

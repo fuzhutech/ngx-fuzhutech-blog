@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {isUndefined} from 'util';
-import {HOST_API_PATH, HOST_PATH} from '../constant';
-import {User} from '../index';
+import {HOST_API_PATH, HOST_PATH} from '../../shared/constant';
+import {User} from '../../shared/index';
 
 export abstract class BaseService {
 

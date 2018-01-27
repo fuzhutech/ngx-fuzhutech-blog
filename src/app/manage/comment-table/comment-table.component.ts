@@ -1,12 +1,11 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {flyIn} from '../../shared/animations/fly-in';
-import {Comment} from '../../shared/model/comment-model';
-import {CommentService} from '../../shared';
-
-import {MatTableDataSource, MatPaginator} from '@angular/material';
-import {ViewChild} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
+import {MatTableDataSource, MatPaginator} from '@angular/material';
+
+import {CommentService} from '../../core/services';
+import {Comment} from '../../shared/model/comment-model';
+import {flyIn} from '../../shared/animations/fly-in';
 
 @Component({
     selector: 'app-comment-table',
