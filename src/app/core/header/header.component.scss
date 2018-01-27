@@ -1,1 +1,27 @@
+@media (max-width: 600px) {
+    .header-bar {
+        font-size: small;
+    }
+
+    .theme-text{
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-text{
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-bar {
+        font-size: xx-small;
+    }
+}
+
+
+
+
+
 

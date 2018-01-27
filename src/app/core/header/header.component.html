@@ -1,10 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-bar">
 
-    <button mat-icon-button>
+    <button mat-icon-button class="home-text">
         <mat-icon>menu</mat-icon>
     </button>
 
-    <span (click)="onHomeClick()">FuzhuTech</span>
+    <span (click)="onHomeClick()" class="home-text">FuzhuTech</span>
 
     <span><a mat-button routerLink="/posts">动态</a></span>
     <span>
@@ -25,5 +25,5 @@
     <span *ngIf="loginService.currentUser?.nickName">
         <a mat-button routerLink="user">欢迎你：{{loginService.currentUser?.nickName}}</a>
     </span>
-    <mat-slide-toggle (change)="onChange($event.checked)">黑夜模式</mat-slide-toggle>
+    <mat-slide-toggle (change)="onChange($event.checked)"><span class="theme-text">黑夜模式</span></mat-slide-toggle>
 </mat-toolbar>

@@ -40,3 +40,23 @@ main {
         width: 1170px;
     }
 }
+
+@media (max-width: 600px) {
+    .site {
+        font-size: small;
+    }
+}
+
+@media (max-width: 480px) {
+    //
+}
+
+@media (max-width: 320px) {
+    .site {
+        font-size: xx-small;
+    }
+
+    .mat-paginator-page-size{
+        display: none;
+    }
+}

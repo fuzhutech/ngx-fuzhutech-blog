@@ -1,0 +1,23 @@
+.record-text{
+    padding-left: 5px;
+}
+
+@media (max-width: 600px) {
+    .status-bar {
+        font-size: small;
+    }
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 320px) {
+    .status-bar {
+        font-size: xx-small;
+    }
+
+    .record-text{
+        display: none;
+    }
+}

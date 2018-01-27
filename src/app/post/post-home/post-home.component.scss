@@ -19,3 +19,9 @@
 .post-grid-cell.u-1of4 {
     flex: 0 0 25%;
 }
+
+@media (max-width: 768px) {
+    .post-grid-cell.u-1of4 {
+        display: none;
+    }
+}

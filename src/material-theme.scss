@@ -17,6 +17,16 @@
         background-color: $drawer-container-background-color;
         color: mat-color($foreground, text);
     }
+
+    @media (max-width: 480px) {
+        .mat-paginator-page-size{
+            display: none;
+        }
+
+        .mat-paginator-range-label{
+            display: none;
+        }
+    }
 }
 
 @mixin fz-toolbar-theme($theme) {
