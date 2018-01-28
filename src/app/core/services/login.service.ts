@@ -9,61 +9,61 @@ import {HOST_API_PATH} from '../../shared/constant';
 @Injectable()
 export class LoginService {
 
-  private host_api = HOST_API_PATH;
-  private user: User;
+    private host_api = HOST_API_PATH;
+    private user: User;
 
-  constructor(public http: HttpClient) {
-  }
-
-  public get currentUser(): User {
-    const currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser;
-  }
-
-  public get token(): string {
-    if (this.currentUser != null) {
-      return this.currentUser.password;
-    } else {
-      return null;
+    constructor(public http: HttpClient) {
     }
-  }
 
-  public login(user: User) {
+    public get currentUser(): User {
+        const currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
+        return currentUser;
+    }
 
-    const headers = new HttpHeaders().append('Content-Type', 'application/json');
-
-    user.password = Md5.hashStr(user.password).toString();
-    console.log(user.password);
-
-    return this.http.put(this.host_api + '/login', JSON.stringify(user), {headers: headers})
-      .map((obj: { status, data, message }) => {
-        if (obj.status === 1) {
-          user = obj.data;
-          localStorage.setItem('currentUser', JSON.stringify(user));
+    public get token(): string {
+        if (this.currentUser != null) {
+            return this.currentUser.password;
+        } else {
+            return '';
         }
+    }
 
-        return obj;
-      });
-  }
+    public login(user: User) {
 
-  public logout(): void {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json')
-      .append('Authorization', this.token);
+        const headers = new HttpHeaders().append('Content-Type', 'application/json');
 
-    this.http.put(this.host_api + '/logout', JSON.stringify(this.currentUser), {headers: headers})
-      .subscribe(
-        data => {
-          console.log('退出当前用户');
-        },
-        err => {
-          console.log(err);
-        },
-        () => {
-          console.log('refresh Complete');
-        });
+        user.password = Md5.hashStr(user.password).toString();
+        console.log(user.password);
+
+        return this.http.put(this.host_api + '/login', JSON.stringify(user), {headers: headers})
+            .map((obj: { status, data, message }) => {
+                if (obj.status === 1) {
+                    user = obj.data;
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                }
+
+                return obj;
+            });
+    }
+
+    public logout(): void {
+        const headers = new HttpHeaders()
+            .append('Content-Type', 'application/json')
+            .append('Authorization', this.token);
+
+        this.http.put(this.host_api + '/logout', JSON.stringify(this.currentUser), {headers: headers})
+            .subscribe(
+                data => {
+                    console.log('退出当前用户');
+                },
+                err => {
+                    console.log(err);
+                },
+                () => {
+                    console.log('refresh Complete');
+                });
 
 
-    localStorage.removeItem('currentUser');
-  }
+        localStorage.removeItem('currentUser');
+    }
 }

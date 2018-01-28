@@ -5,20 +5,20 @@ import {HOST_API_PATH, HOST_PATH} from '../../shared/constant';
 
 @Injectable()
 export class SiteStatService {
-  private host = HOST_PATH;
-  private host_api = HOST_API_PATH;
-  protected url: string = this.host_api + '/statistics';
+    private host = HOST_PATH;
+    private host_api = HOST_API_PATH;
+    protected url: string = this.host_api + '/statistics';
 
-  constructor(protected http: HttpClient) {
-    //
-  }
+    constructor(protected http: HttpClient) {
+        //
+    }
 
-  public getSiteStat() {
-    const headers = new HttpHeaders().append('Content-Type', 'application/json;charset=UTF-8');
+    public getSiteStat() {
+        const headers = new HttpHeaders().append('Content-Type', 'application/json;charset=UTF-8');
 
-    const searchParams = new HttpParams();
+        const searchParams = new HttpParams();
 
-    return this.http.get(this.url, {params: searchParams, headers: headers});
-  }
+        return this.http.get(this.url, {params: searchParams, headers: headers}).shareReplay();
+    }
 
 }
