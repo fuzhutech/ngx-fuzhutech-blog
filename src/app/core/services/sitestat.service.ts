@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {HOST_API_PATH, HOST_PATH} from '../../shared/constant';
+import {shareReplay} from 'rxjs/operators';
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class SiteStatService {
 
         const searchParams = new HttpParams();
 
-        return this.http.get(this.url, {params: searchParams, headers: headers}).shareReplay();
+        return this.http.get(this.url, {params: searchParams, headers: headers}).pipe(shareReplay());
     }
 
 }

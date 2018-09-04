@@ -5,17 +5,18 @@ import {
     HttpEvent,
     HttpInterceptor
 } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {LoginService} from './login.service';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
     private loginService: LoginService;
 
-    constructor(inj: Injector) {
-        setTimeout(() => {
+    constructor(inj: Injector, loginService: LoginService) {
+        this.loginService = loginService;
+        /*setTimeout(() => {
             this.loginService = inj.get(LoginService);
-        });
+        });*/
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

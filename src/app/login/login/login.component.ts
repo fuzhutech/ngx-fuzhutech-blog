@@ -4,6 +4,7 @@ import {LoginService} from '../../core/services/login.service';
 import {Location} from '@angular/common';
 
 import {fadeIn} from '../../shared/animations/fade-in';
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-user-login',
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
         // noinspection JSIgnoredPromiseFromCall
         this.userLoginService.login(value)
-            .take(1)
+            .pipe(take(1))
             .subscribe(
                 (data: { status, data, message }) => {
                     if (data.status === 1) {

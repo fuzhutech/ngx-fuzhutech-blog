@@ -6,6 +6,7 @@ import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {CommentService} from '../../core/services';
 import {Comment} from '../../shared/model/comment-model';
 import {flyIn} from '../../shared/animations/fly-in';
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-comment-table',
@@ -35,7 +36,7 @@ export class CommentTableComponent implements OnInit, AfterViewInit {
     delComment(comment: Comment): void {
         console.log(comment);
         this.commentService.delete(comment.id)
-            .take(1)
+            .pipe(take(1))
             .subscribe(
                 data => {
                     this.loadData();
@@ -50,7 +51,7 @@ export class CommentTableComponent implements OnInit, AfterViewInit {
     private loadData() {
 
         this.commentService.getList()
-            .take(1)
+            .pipe(take(1))
             .subscribe(
                 (data: Comment[]) => {
                     this.dataSource.data = data;

@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Md5} from 'ts-md5/dist/md5';
 import {User} from '../../shared/model/user-model';
 import {HOST_API_PATH} from '../../shared/constant';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
@@ -36,14 +35,16 @@ export class LoginService {
         console.log(user.password);
 
         return this.http.put(this.host_api + '/login', JSON.stringify(user), {headers: headers})
-            .map((obj: { status, data, message }) => {
-                if (obj.status === 1) {
-                    user = obj.data;
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
+            .pipe(
+                map((obj: { status, data, message }) => {
+                    if (obj.status === 1) {
+                        user = obj.data;
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                    }
 
-                return obj;
-            });
+                    return obj;
+                })
+            );
     }
 
     public logout(): void {

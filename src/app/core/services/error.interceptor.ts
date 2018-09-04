@@ -4,7 +4,8 @@ import {
     HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse, HttpEventType
 } from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable, throwError} from 'rxjs';
+import {catchError, mergeMap} from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -34,7 +35,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor() {
     }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
         /*req = req.clone({
             url: 'test',
             setHeaders: {
@@ -42,8 +43,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
         });*/
 
-        return next.handle(req)
-            .mergeMap(event => {
+        return next.handle(req).pipe(
+            mergeMap(event => {
                 // 只会在请求成功才会返回一个 HttpResponse 类型，因此，我们可以大胆判断是否来源于 HttpResponse 来表示HTTP请求已经成功。
                 if (event instanceof HttpResponse) {
                     console.log('HTTP请求已经成功', req.url);
@@ -55,8 +56,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
 
                 return Observable.create(observer => observer.next(event));
-            })
-            .catch(err => {
+            }),
+            catchError(err => {
                 // Http请求失败。前面的 switchMap 所产生的错误信号，也会在这里被捕获到。
 
                 if (err instanceof HttpErrorResponse) {
@@ -85,8 +86,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                 console.log(err);
                 // 以错误的形式结束本次请求
-                return Observable.throw(err);
-            });
+                return throwError(err);
+            }));
     }
 
     /*longRequest() {

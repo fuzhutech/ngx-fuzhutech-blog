@@ -5,6 +5,7 @@ import {MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
 import {Post} from '../../shared/model/post-model';
 import {PostService} from '../../core/services';
 import {flyIn} from '../../shared/animations/fly-in';
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-post-table',
@@ -34,7 +35,7 @@ export class PostTableComponent implements OnInit, AfterViewInit {
     public loadData() {
 
         this.postService.getList()
-            .take(1)
+            .pipe(take(1))
             .subscribe(
                 (data: Post[]) => {
                     this.dataSource.data = data;

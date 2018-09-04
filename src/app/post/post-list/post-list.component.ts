@@ -1,12 +1,9 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router, Params} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 import {PageEvent} from '@angular/material';
 import {Post} from '../../shared/model/post-model';
 import {HOST_PATH} from '../../shared';
-import 'rxjs/operator/take';
 
 
 import {PostService} from '../../core/services';
